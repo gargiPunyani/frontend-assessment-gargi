@@ -4,6 +4,7 @@ import Card from "../components/Cards";
 import Hero from "../components/HeroModal";
 import SearchModal from "../components/SearchModal";
 import FilterModal from "../components/FilterModal";
+import { useAuth } from "../auth/Auth";
 
 const Home = () => {
   const [characters, setCharacters] = useState([]);
@@ -20,6 +21,7 @@ const Home = () => {
     film: "",
   });
 
+  const {logout} = useAuth();
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -78,10 +80,18 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
-      <div className="mainHeading">
-        <h1 className="text-3xl font-bold text-center mb-6">
-          Star Wars Characters
-        </h1>
+      <div className="flex justify-between">
+        <div className="mainHeading">
+          <h1 className="text-3xl font-bold text-center mb-6">
+            Star Wars Characters
+          </h1>
+        </div>
+        <div className="logoutBtn">
+          <button className="bg-gray-700 px-3 py-2 rounded cursor-pointer"
+            onClick={logout}
+          > 
+          Logout</button>
+        </div>
       </div>
 
       <div className="md:flex md:justify-between md:items-center mb-4">
